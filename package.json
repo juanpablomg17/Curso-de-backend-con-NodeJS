@@ -1,0 +1,32 @@
+{
+  "name": "Curso-de-backend-con-NodeJS",
+  "version": "1.0.0",
+  "description": "Creación de API REST con Express",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanpablomg17/Curso-de-backend-con-NodeJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanpablomg17/Curso-de-backend-con-NodeJS/issues"
+  },
+  "homepage": "https://github.com/juanpablomg17/Curso-de-backend-con-NodeJS#readme"
+}
