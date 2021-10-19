@@ -41,12 +41,34 @@ router.get("/:id", (req, res)=> {
 });
 
 
-
+// funciona para agregar 
 router.post("/", (req, res) => {
   const body = req.body;
   res.json({
     message: "creation",
     data: body
+  });
+});
+
+
+// método para actualizar
+router.patch("/:id", (req, res) => {
+  const {id} = req.params;
+  const body = req.body;
+  res.json({
+    message: "update",
+    data: body,
+    id,
+  });
+});
+
+
+// método para eliminar
+router.delete("/:id", (req, res) => {
+  const {id} = req.params;
+  res.json({
+    message: "deleted",
+    id,
   });
 });
 
