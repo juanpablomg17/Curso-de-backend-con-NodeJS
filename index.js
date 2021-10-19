@@ -7,7 +7,7 @@ const port = 3001;
 
 app.get("/", (req, res) =>{
   res.send("Hola mi server en Express");
-  console.log(`Listening at http://localhost:${port}`);
+
 });
 
 
@@ -27,9 +27,13 @@ app.get("/products", (req, res) =>{
 
 
     })
-    
+
   }
   res.json(products);
+});
+
+app.get('/products/filter', (req, res) => {
+  res.send('Soy un filter');
 });
 
 
@@ -54,7 +58,7 @@ app.get("/users", (req, res) => {
        limit,
        offset
      })
-   } 
+   }
    else{
      res.send('No Hay parámetros')
    }
@@ -73,5 +77,8 @@ app.get("/categories/:categoryId/products/:productId", (req, res) => {
 
 app.listen(port, () =>{
   console.log("My port: " + port);
+  console.log(`Listening at http://localhost:${port}`);
 });
+
+
 
