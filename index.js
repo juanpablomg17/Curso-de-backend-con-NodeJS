@@ -1,5 +1,7 @@
 const { application } = require("express");
 const express = require("express");
+const faker = require("faker");
+
 const app = express();
 const port = 3001;
 
@@ -11,25 +13,23 @@ app.get("/", (req, res) =>{
 
 app.get("/categories", (req, res) =>{
   res.send("Hola, soy una nueva ruta");
-  console.log(`Listening at http://localhost:${port}`);
 });
 
 app.get("/products", (req, res) =>{
-  res.json([
-    {
-      name: 'Product 1',
-      price: 1000
-    },
-    {
-      name: 'Product 2',
-      price: 2000
-    },
-    {
-      name: 'Product 3',
-      price: 3000
-    }
-  ]);
-  console.log(`Listening at http://localhost:${port}`);
+  const products = [];
+  const {size} = req.query;
+  const limit = size | 10;
+  for (let index = 0; index < limit; index++) {
+    products.push({
+      name: faker.commerce.productName(),
+      price: parseInt(faker.commerce.price(), 10),
+      image: faker.image.imageUrl(),
+
+
+    })
+    
+  }
+  res.json(products);
 });
 
 
@@ -44,6 +44,21 @@ app.get("/products/:id", (req, res)=> {
     name: 'Product 3',
     price: 3000
   });
+});
+
+app.get("/users", (req, res) => {
+   const {limit, offset} = req.query;
+
+   if (limit && offset){
+     res.json({
+       limit,
+       offset
+     })
+   } 
+   else{
+     res.send('No Hay parámetros')
+   }
+
 });
 
 app.get("/categories/:categoryId/products/:productId", (req, res) => {
