@@ -1,21 +1,27 @@
-const { application } = require("express");
 const express = require("express");
 const routerApi = require("./routes");
-const routes = require('./routes');
+
+const {logErros, errorHandler, boomErrorHandler} = require("./middlewares/errors/errorHandler");
 
 
 const app = express();
 const port = 3001;
+
+app.use(express.json());
 
 app.get("/", (req, res) =>{
   res.send("Hola mi server en Express");
 
 });
 
-app.use(express.json());
-
-
 routerApi(app);
+app.use(logErros);
+app.use(boomErrorHandler);
+app.use(errorHandler);
+
+
+
+
 
 
 //listening my app
