@@ -41,6 +41,9 @@ app.use(errorHandler);
 app.listen(port, () =>{
   console.log("My port: " + port);
   console.log(`Listening at http://localhost:${port}`);
+  console.log(`products runing into: http://localhost:${port}/api/v1/products`);
+  console.log(`products runing into: http://localhost:${port}/api/v1/users`);
+  console.log(`products runing into: http://localhost:${port}/api/v1/categories`);
 });
 
 
