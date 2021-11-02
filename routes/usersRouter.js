@@ -1,22 +1,35 @@
 const express = require("express");
-const faker = require("faker");
-const Service = require('../services/userService');
+const validatorHandler = require('./../middlewares/validators/validatorHandler');
+const userService = require('../services/userService');
+const { createUserSchema, updateUserShema, getUserSchema } = require('./../schemas/userSchema')
+
 const router = express.Router();
+const service = new userService();
 
-const service = new Service();
 
-
-router.get("/", (req, res) => {
-    const users = service.list();
+router.get("/", async (req, res, next) => {
+  try {
+    const users = await service.list();
     res.json(users);
+  } catch (error) {
+    next(error);
+  }
+    
  });
 
 
- router.get("/:userID", (req, res) => {
-   const {userID} = req.params;
-   const user = service.findOne(userID);
-   res.json(user);
- })
+ router.get("/:id",validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const {userID} = req.params;
+      const user = service.findOne(userID);
+      res.json(user);  
+    } catch (error) {
+      
+    }
+    
+  }
+   )
  
 
 

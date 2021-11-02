@@ -1,10 +1,13 @@
 const faker = require('faker');
-const { get } = require('../routes/categoriesRouter');
+
+const pool = require('../libs/postgresPool');
 
 class User {
     constructor(){
         this.users = [];
         this.generate();
+        this.pool = pool;
+        this.pool.on('error',(err)=> console.error(err));
 
     }
 
@@ -27,8 +30,11 @@ class User {
     }
 
 
-    list(){
-        return this.users;
+    async list(){
+        
+        const query = 'SELECT* FROM public.users';
+        const res = await pool.query(query);
+        return res.rows;
     }
 
     findOne(id){
